@@ -19,7 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import data from '../components/DataPath';
-import { Grid } from '@mui/material';
+import { Avatar, Grid } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -150,18 +150,44 @@ export default function MiniDrawer() {
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
                                     px: 2.5,
+                                    marginTop: '10px',
+                                    marginLeft: '6px',
+                                    marginRight: '6px',
                                 }}
+                                style={{ height: '52px', backgroundColor: text.path === location.pathname ? '#EF873D' : '#fff', borderRadius: '50px' }}
                             >
                                 <ListItemIcon
                                     sx={{
                                         minWidth: 0,
-                                        mr: open ? 3 : 'auto',
+                                        mr: open ? 2 : 'auto',
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    {text.icon}
+                                    <Avatar sx={{
+                                        bgcolor: 'white',
+                                        color: text.path === location.pathname ? 'orange' : 'grey',
+                                    }}>
+                                        {text.icon}
+                                    </Avatar>
                                 </ListItemIcon>
-                                <ListItemText className='css-10hburv-MuiTypography-root' primary={text.label} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText className='css-10hburv-MuiTypography-root' primary={
+                                    <Typography noWrap
+                                        style={{
+                                            color: text.path === location.pathname ? '#fff' : 'grey',
+                                            fontFamily: "noto sans Thai",
+                                            display: "inline-block", whiteSpace: "pre-line",
+                                        }}
+                                        sx={{ width: '130px', height: '50px', alignContent: 'center', marginTop: '8px' }}
+                                    >
+                                        {text.label}
+                                    </Typography>
+                                }
+                                    sx={{
+                                        opacity: open ? 1 : 0,
+                                        // color:
+                                        // color: 'blue'
+                                    }} />
+
                             </ListItemButton>
                         </ListItem>
                     ))}
