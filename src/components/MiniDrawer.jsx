@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import data from '../components/DataPath';
+import { Grid } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -62,7 +63,7 @@ const AppBar = styled(MuiAppBar, {
     }),
     ...(open && {
         marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: '100%',
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
@@ -76,6 +77,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         flexShrink: 0,
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
+        fontFamily: 'noto sans Thai',
         ...(open && {
             ...openedMixin(theme),
             '& .MuiDrawer-paper': openedMixin(theme),
@@ -93,12 +95,16 @@ export default function MiniDrawer() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
+    // const handleDrawerOpen = () => {
+    //     setOpen(true);
+    // };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
+    // const handleDrawerClose = () => {
+    //     setOpen(false);
+    // };
+
+    const handleToggleOpenClose = () => {
+        setOpen(!open);
     };
 
     const tabClickEvent = (url, index) => {
@@ -109,32 +115,32 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar position="fixed" open={open}
+                sx={{ height: '75px', justifyContent: 'center', bgcolor: 'white ' }}
+            >
                 <Toolbar>
                     <IconButton
-                        color="inherit"
+                        color="black"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={handleToggleOpenClose}
                         edge="start"
                         sx={{
-                            marginRight: 5,
-                            ...(open && { display: 'none' }),
+                            marginRight: 2,
                         }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Mini variant drawer
-                    </Typography>
+                    <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+                        <p className='header-item'>ระบบบริการข้อมูลเพื่อบริหารจัดการน้ำท่วม</p>
+                        <p className='header-item'>ยินดีต้อนรับ สุภาดา พิทักษ์ไพรศาล</p>
+                    </Grid>
+                    <Grid container sx={{ width: '100%', justifyContent: 'left', display: { sm: 'block', md: 'none' } }}>
+                        <p className='header-item'>ระบบบริการข้อมูลเพื่อบริหารจัดการน้ำท่วม</p>
+                    </Grid>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
+                <Box sx={{ height: '72px' }}></Box>
                 <List>
                     {dataRes.map((text, index) => (
                         <ListItem key={text.id} disablePadding sx={{ display: 'block' }}>
@@ -155,7 +161,7 @@ export default function MiniDrawer() {
                                 >
                                     {text.icon}
                                 </ListItemIcon>
-                                <ListItemText primary={text.label} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText className='css-10hburv-MuiTypography-root' primary={text.label} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
                     ))}
