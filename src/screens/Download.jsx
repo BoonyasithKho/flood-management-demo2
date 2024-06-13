@@ -1,16 +1,38 @@
-import { Box, Container } from "@mui/material"
+import { Box, Container, Divider, Grid } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
+import { Label } from "@mui/icons-material"
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/en-gb';
 
 export default function Download() {
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '100px' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
                 <MiniDrawer />
-                <h1>Download</h1>
-                <Container fixed>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, blanditiis adipisci id dolorem quasi veniam corrupti similique numquam velit, doloremque expedita saepe ullam. Esse libero animi minus voluptas ut porro.</p>
-                </Container>
-            </Box>
+                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 6, margin: 2 }}>
+                    <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+                        <Box className='header-item'>รายการไฟล์ข้อมูล</Box>
+                        <Box className='header-item' sx={{ width: '541px', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+                            <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+                                <Box className='header-item' sx={{ display: 'flex', alignItems: 'center' }}>
+                                    ตั้งแต่วันที่ :
+                                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'en-gb'} >
+                                        <DatePicker sx={{ paddingLeft: '0.5rem', width: '10rem' }} label="วัน/เดือน/ปี" />
+                                    </LocalizationProvider>
+                                </Box>
+                                <Box className='header-item' sx={{ display: 'flex', alignItems: 'center' }}>
+                                    ถึงวันที่ :
+                                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'en-gb'} >
+                                        <DatePicker sx={{ paddingLeft: '0.5rem', width: '10rem' }} label="วัน/เดือน/ปี" />
+                                    </LocalizationProvider>
+                                </Box>
+                            </Grid>
+                        </Box>
+                    </Grid>
+                </Box >
+            </Box >
         </>
     )
 }

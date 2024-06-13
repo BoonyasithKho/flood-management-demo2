@@ -1,47 +1,45 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Grid, Typography } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
+
 import qrCode from '../assets/qrCode.png';
+import lineApps from '../assets/lineApp.png';
 
 export default function Contactus() {
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '100vh' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
                 <MiniDrawer />
-                {/* <h1>Contactus</h1>
-                <Container fixed>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, blanditiis adipisci id dolorem quasi veniam corrupti similique numquam velit, doloremque expedita saepe ullam. Esse libero animi minus voluptas ut porro.</p>
-                </Container> */}
-                <Grid container sx={{
-                    p: 5,
-                    justifyContent: 'center',
-                    alignContent: 'top',
-                    display: "flex"
-                }}>
-
-                    <Box sx={{ bgcolor: 'white', width: '100%', height: '90vh', borderRadius: '10px', p: 5 }}>
-                        {/* <h1 style={{ fontFamily: 'noto sans thai' }}>ติดต่อเจ้าหน้าที่</h1> */}
-                        <Divider />
-                        {/* <Box sx={{ bgcolor: 'red' }}> */}
-                        <img src={qrCode} alt="" width='100%' />
-                        {/* <p className="infomationcontact">สามารถแสกน Line QR code</p> */}
-                        {/* </Box> */}
-
+                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 2, margin: 2 }}>
+                    <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>ติดต่อเจ้าหน้าที่</p>
+                    <Divider />
+                    <Box sx={
+                        { display: { xs: 'none', sm: 'none', md: 'flex', justifyContent: 'center', alignContent: 'center' } }
+                    }>
+                        <img src={qrCode} alt="" width='20%' />
                     </Box>
-                    {/* <Card sx={{ width: '95%', height: '75vh' }} >
-                        <CardActionArea>
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card> */}
+                    <Box sx={
+                        { display: { xs: 'flex', sm: 'flex', md: 'none', justifyContent: 'center', alignContent: 'center' } }
+                    }>
+                        <img src={qrCode} alt="" width='100%' />
+                    </Box>
 
-                </Grid>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '100%', color: 'grey', fontFamily: 'noto sans thai', fontSize: '1.1rem', fontWeight: '600' }} >
+                        สามารถแสกน Line QR code
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '100%', color: 'grey', fontFamily: 'noto sans thai', fontSize: '1.1rem', fontWeight: '600' }} >
+                        หรือ Add Line : HelpMePlease
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '100%', color: 'grey', fontFamily: 'noto sans thai', fontSize: '1.1rem', fontWeight: '600' }} >
+                        เพื่อติดต่อเจ้าหน้าที่
+                    </Box>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', width: '100%', color: '#2CCF54', fontFamily: 'noto sans thai', fontSize: '1.1rem', fontWeight: '600' }} >
+                        <img src={lineApps} alt="" width='50rem' height='50rem' />
+                        <Box sx={{ marginTop: '10px' }}>
+                            @HelpMePlease
+                        </Box>
+                    </Box>
+                </Box>
             </Box >
         </>
     )
