@@ -5,6 +5,7 @@ import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/en-gb';
+import BasicTable from "../components/DownloadTable";
 
 export default function Download() {
     return (
@@ -13,7 +14,7 @@ export default function Download() {
                 <MiniDrawer />
                 <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 6, margin: 2 }}>
                     <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-                        <Box className='header-item'>รายการไฟล์ข้อมูล</Box>
+                        <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>รายการไฟล์ข้อมูล</p>
                         <Box className='header-item' sx={{ width: '541px', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
                             <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                                 <Box className='header-item' sx={{ display: 'flex', alignItems: 'center' }}>
@@ -31,6 +32,8 @@ export default function Download() {
                             </Grid>
                         </Box>
                     </Grid>
+                    <Divider />
+                    <BasicTable />
                 </Box >
             </Box >
         </>
