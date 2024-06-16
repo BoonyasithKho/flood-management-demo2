@@ -1,16 +1,17 @@
-import { Box, Container } from "@mui/material"
+import { Box, Container, Divider } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
 
 export default function Dashboard() {
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '100px' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
                 <MiniDrawer />
-                <h1>Dashboard</h1>
-                <Container fixed>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, blanditiis adipisci id dolorem quasi veniam corrupti similique numquam velit, doloremque expedita saepe ullam. Esse libero animi minus voluptas ut porro.</p>
-                </Container>
-            </Box>
+                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2 }}>
+                    <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>Dashboard</p>
+                    <Divider />
+
+                </Box>
+            </Box >
         </>
     )
 }

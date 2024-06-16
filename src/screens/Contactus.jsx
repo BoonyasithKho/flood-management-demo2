@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, Divider, Grid, Typography } from "@mui/material"
+import { Box, Divider } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
 
 import qrCode from '../assets/qrCode.png';
@@ -9,7 +9,7 @@ export default function Contactus() {
         <>
             <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
                 <MiniDrawer />
-                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 2, margin: 2 }}>
+                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2 }}>
                     <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>ติดต่อเจ้าหน้าที่</p>
                     <Divider />
                     <Box sx={

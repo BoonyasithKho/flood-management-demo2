@@ -1,7 +1,5 @@
-import { Box, Container, Divider, Grid } from "@mui/material"
+import { Box, Divider, Grid } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
-import { Label } from "@mui/icons-material"
-import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/en-gb';
@@ -12,7 +10,7 @@ export default function Download() {
         <>
             <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
                 <MiniDrawer />
-                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 6, margin: 2 }}>
+                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2 }}>
                     <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>รายการไฟล์ข้อมูล</p>
                         <Box className='header-item' sx={{ width: '541px', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
