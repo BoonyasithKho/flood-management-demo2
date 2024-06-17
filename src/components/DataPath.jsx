@@ -12,6 +12,7 @@ import Download from '../screens/Download';
 import Profile from '../screens/Profile';
 import DeviceRegisted from '../screens/DeviceRegisted'
 import Contactus from '../screens/Contactus'
+import ErrorScreen from '../screens/ErrorScreen';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default function () {
@@ -21,7 +22,7 @@ export default function () {
             label: "แผนที่",
             icon: <MapIcon />,
             component: <Mapping />,
-            path: "/mapping"
+            path: "/"
         },
         {
             id: 1,
@@ -62,8 +63,8 @@ export default function () {
             id: 6,
             label: "ออกจากระบบ",
             icon: <ExitToAppIcon />,
-            component: <Mapping />,
-            path: "/"
+            component: <ErrorScreen />,
+            path: "/errorscreen"
         },
     ]
     return data
