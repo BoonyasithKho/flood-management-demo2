@@ -1,4 +1,4 @@
-import { Box, Container, Divider } from "@mui/material"
+import { Box, Divider } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
 
 export default function DeviceRegisted() {
