@@ -22,16 +22,16 @@ export default function DeviceRegisted() {
 
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: 'calc(100vh-75px)' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey' }} height={'calc(100vh - 75px)'}>
                 <MiniDrawer />
-                <Stack direction='column' sx={{ width: '100%', }} >
-                    <Box sx={{ marginTop: 2, marginLeft: 2, marginBottom: 2 }}>
+                <Stack direction='column' width={'100vw'} height={'100%'} >
+                    <Box sx={{ marginTop: 2, marginLeft: 2 }}>
                         <ColorButton variant="contained" sx={{ paddingLeft: 4, paddingRight: 4, }}
                         >ลงทะเบียนเครื่องจักรใหม่</ColorButton>
                         <ColorButton variant="contained"
                             sx={{ marginLeft: 2, paddingLeft: 4, paddingRight: 4 }}>นำเข้าข้อมูล CSV</ColorButton>
                     </Box>
-                    <Box sx={{ bgcolor: 'white', width: 'calc(100%-2px)', height: '88vh', borderRadius: '10px', paddingLeft: 4, paddingRight: 4, margin: 2 }}>
+                    <Box sx={{ bgcolor: 'white', height: '100%', borderRadius: '10px', paddingLeft: 4, paddingRight: 4, margin: 2, display: 'block' }}>
                         <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                             <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>ประวัติการลงทะเบียนเครื่องจักร</p>
                             <Box className='header-item' sx={{ width: '100px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: '8px' }}>
@@ -47,6 +47,7 @@ export default function DeviceRegisted() {
                         <DeviceTable />
                     </Box >
                 </Stack >
+
             </Box >
         </>
     )

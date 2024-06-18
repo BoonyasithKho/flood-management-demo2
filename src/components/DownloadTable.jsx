@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Avatar, Divider } from '@mui/material';
+import { Avatar } from '@mui/material';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import pdfIconImg from '../assets/pdf.png'

@@ -7,9 +7,9 @@ import lineApps from '../assets/lineApp.png';
 export default function Contactus() {
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey' }} height={'calc(100vh - 75px)'}>
                 <MiniDrawer />
-                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2 }}>
+                <Box sx={{ bgcolor: 'white', width: '100%', borderRadius: '10px', p: 4, margin: 2 }}>
                     <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>ติดต่อเจ้าหน้าที่</p>
                     <Divider />
                     <Box sx={

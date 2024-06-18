@@ -7,9 +7,9 @@ import errorImg from '../assets/error.png'
 function ErrorScreen() {
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey' }} height={'calc(100vh-75px)'}>
                 <MiniDrawer />
-                <Box sx={{ display: 'flex', width: '100%', borderRadius: '10px', paddingBottom: '4rem', margin: 2, alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ display: 'flex', width: '100%', borderRadius: '10px', paddingBottom: '4rem', margin: 2, alignItems: 'center', justifyContent: 'center' }} height={'90vh'}>
                     <Box >
                         <img src={errorImg} alt="" />
                         <Box style={{ textAlign: 'center' }} sx={{ fontFamily: 'noto sans thai', color: 'darkred', fontWeight: 'bold', fontSize: '1.5rem' }}>

@@ -43,9 +43,9 @@ export default function Profile() {
 
     return (
         <>
-            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
+            <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey' }} height={'calc(100vh - 75px)'}>
                 <MiniDrawer />
-                <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2, display: 'block' }}>
+                <Box sx={{ bgcolor: 'white', borderRadius: '10px', p: 4, margin: 2, display: 'block' }}>
                     <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>โปรไฟล์</p>
                     <Divider />
                     <Grid container marginTop='1rem' sx={{ fontFamily: 'noto sans thai' }}>
