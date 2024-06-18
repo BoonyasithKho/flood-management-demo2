@@ -10,7 +10,7 @@ export default function Download() {
         <>
             <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey' }} height={'calc(100vh - 75px)'}>
                 <MiniDrawer />
-                <Box sx={{ bgcolor: 'white', width: '100%', borderRadius: '10px', p: 4, margin: 2 }}>
+                <Box sx={{ bgcolor: 'white', width: '100%', borderRadius: '10px', p: 4, margin: 2, overflowY: 'scroll' }}>
                     <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>รายการไฟล์ข้อมูล</p>
                         <Box className='header-item' sx={{ width: '541px', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>

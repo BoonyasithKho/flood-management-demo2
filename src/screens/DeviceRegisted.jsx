@@ -31,7 +31,7 @@ export default function DeviceRegisted() {
                         <ColorButton variant="contained"
                             sx={{ marginLeft: 2, paddingLeft: 4, paddingRight: 4 }}>นำเข้าข้อมูล CSV</ColorButton>
                     </Box>
-                    <Box sx={{ bgcolor: 'white', height: '100%', borderRadius: '10px', paddingLeft: 4, paddingRight: 4, margin: 2, display: 'block' }}>
+                    <Box sx={{ bgcolor: 'white', height: '100%', borderRadius: '10px', paddingLeft: 4, paddingRight: 4, paddingBottom: 4, margin: 2, overflowY: 'scroll' }}>
                         <Grid container sx={{ width: '100%', justifyContent: 'space-between', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                             <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>ประวัติการลงทะเบียนเครื่องจักร</p>
                             <Box className='header-item' sx={{ width: '100px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: '8px' }}>

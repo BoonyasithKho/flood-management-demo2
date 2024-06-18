@@ -25,6 +25,8 @@ const rows = [
     createData(deviceIcon_5, 'รถบรรทุก 6 ล้อ พร้อมเครน', 'รถ', 'รอการติดตั้ง', '05 มิถุนายน 2567'),
 ];
 
+
+
 export default function DeviceTable() {
     return (
         <TableContainer component={Paper} sx={{ marginTop: '1.2em' }}>

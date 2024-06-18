@@ -1,6 +1,5 @@
-import React from 'react'
 import MiniDrawer from '../components/MiniDrawer';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import errorImg from '../assets/error.png'
 
