@@ -20,7 +20,6 @@ export default function DeviceRegisted() {
         },
     }));
 
-
     return (
         <>
             <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: 'calc(100vh-75px)' }}>

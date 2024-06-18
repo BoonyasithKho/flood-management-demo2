@@ -1,16 +1,27 @@
 import { Box, Divider } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
-
+import Maps from "../components/Maps"
+import { Fab } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 export default function Mapping() {
+  const fabStyle = {
+    position: 'relative',
+    bottom: 64,
+    left: 16,
+  };
   return (
     <>
-      <Box sx={{ display: 'flex', marginTop: '75px', bgcolor: 'lightgrey', height: '91.5vh' }}>
-        <MiniDrawer />
-        <Box sx={{ bgcolor: 'white', width: '100%', height: '88vh', borderRadius: '10px', p: 4, margin: 2 }}>
-          <p style={{ fontFamily: 'noto sans thai', fontSize: '2rem', fontWeight: '600', paddingLeft: '1.5rem' }}>แผนที่</p>
-          <Divider />
+      <Box style={{
+        display: 'flex', marginTop: '75px', width: '100%'
+      }}>
+        < MiniDrawer />
+        {/* < Box sx={{ width: '100%', background: 'pink' }}> */}
+        <Maps />
 
-        </Box>
+        {/* <Fab color="primary" aria-label="add" sx={fabStyle}>
+          <AddIcon />
+        </Fab> */}
+        {/* </Box > */}
       </Box >
     </>
   )
