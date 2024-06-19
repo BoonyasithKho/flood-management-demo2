@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Checkbox, FormControlLabel, FormGroup, Grid, Tab, Tabs, Typography } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
 import Maps from "../components/Maps"
 import { Fab } from "@mui/material";
@@ -11,16 +11,36 @@ import LayersIcon from '@mui/icons-material/Layers';
 import PrintIcon from '@mui/icons-material/Print';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SearchIcon from '@mui/icons-material/Search';
+// import TabContext from "@mui/lab/TabContext";
 
-import sphereBase from '../assets/sphereBase.png'
-import sphereSat from '../assets/sphereSat.png'
+import sphereBase from '../assets/sphereBase.png';
+import sphereSat from '../assets/sphereSat.png';
 
 import '../App.css'
 import PieColor from "../components/PieChart";
 import { useState } from "react";
+import { orange } from "@mui/material/colors";
+// import { TabList, TabPanel } from "@mui/lab";
+
 
 export default function Mapping() {
   const [showpie, setShowpie] = useState(false)
+  const [showlayer, setShowlayer] = useState(false)
+  const [showsearch, setShowsearch] = useState(false)
+  const [mapselect, setMapselect] = useState(false)
+  const [value, setValue] = useState(0);
+
+  const [state, setState] = useState({
+    flood: false,
+    repeatflood: false,
+    devicecenter: false,
+    waterbuilding: false,
+    mainriver: false,
+    minorriver: false,
+  });
+
+  const { flood, repeatflood, devicecenter, waterbuilding, mainriver, minorriver } = state;
+
   const fabStyle_1 = {
     position: 'fixed',
     bottom: '3rem',
@@ -85,6 +105,17 @@ export default function Mapping() {
     color: 'blue',
   };
 
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const handleChange2 = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
@@ -105,7 +136,7 @@ export default function Mapping() {
         <Fab aria-label="add" sx={fabStyle_5} size='medium'>
           <StraightenIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_6} size='medium'>
+        <Fab aria-label="add" sx={fabStyle_6} size='medium' onClick={() => setShowlayer(!showlayer)}>
           <LayersIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_7} size='medium'>
@@ -114,7 +145,7 @@ export default function Mapping() {
         <Fab aria-label="add" sx={fabStyle_8} size='medium' onClick={() => setShowpie(!showpie)} >
           <BarChartIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_9} size='medium'>
+        <Fab aria-label="add" sx={fabStyle_9} size='medium' onClick={() => setShowsearch(!showsearch)}>
           <SearchIcon />
         </Fab>
         <Fab sx={{
@@ -127,7 +158,9 @@ export default function Mapping() {
           borderRadius: '10px',
           outline: '3px solid orange',
           boxShadow: 0,
-        }}>
+        }}
+          onClick={() => setMapselect(!mapselect)}
+        >
           <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
             <img style={{ width: '100%', borderRadius: '10px' }} src={sphereBase} height='80px' />
             <div style={{
@@ -135,9 +168,9 @@ export default function Mapping() {
               position: 'absolute',
               bottom: 0,
               fontFamily: 'noto sans Thai',
-              color: 'black',
+              color: 'white',
               fontWeight: 600,
-              backgroundColor: 'rgba(255, 100, 100, 0.2)',
+              backgroundColor: 'rgba(0,0,0,0.5)',
               borderBottomLeftRadius: '8px',
               borderBottomRightRadius: '8px'
             }}>
@@ -145,10 +178,69 @@ export default function Mapping() {
             </div>
           </Box>
         </Fab >
+        {mapselect ?
+          <Fab sx={{
+            position: 'fixed',
+            width: '100px',
+            height: '80px',
+            minHeight: 'auto',
+            bottom: '3rem',
+            left: '24rem',
+            borderRadius: '10px',
+            outline: '3px solid orange',
+            boxShadow: 0,
+          }}>
+            <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
+              <img style={{ width: '100%', borderRadius: '10px' }} src={sphereBase} height='80px' />
+              <div style={{
+                width: '100%',
+                position: 'absolute',
+                bottom: 0,
+                fontFamily: 'noto sans Thai',
+                color: 'white',
+                fontWeight: 600,
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                borderBottomLeftRadius: '8px',
+                borderBottomRightRadius: '8px'
+              }}>
+                ถนน
+              </div>
+            </Box>
+          </Fab >
+          : <Box />}
+        {mapselect ? <Fab sx={{
+          position: 'fixed',
+          width: '100px',
+          height: '80px',
+          minHeight: 'auto',
+          bottom: '3rem',
+          left: '31rem',
+          borderRadius: '10px',
+          outline: '3px solid orange',
+          boxShadow: 0,
+        }}>
+          <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
+            <img style={{ width: '100%', borderRadius: '10px' }} src={sphereSat} height='80px' />
+            <div style={{
+              width: '100%',
+              position: 'absolute',
+              bottom: 0,
+              fontFamily: 'noto sans Thai',
+              color: 'white',
+              fontWeight: 600,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              borderBottomLeftRadius: '8px',
+              borderBottomRightRadius: '8px'
+            }}>
+              ดาวเทียม
+            </div>
+          </Box>
+        </Fab> : <Box />
+        }
         {showpie ? <Fab sx={{
           position: 'fixed',
-          width: '369px',
-          height: '390px',
+          width: '25rem',
+          height: '25rem',
           minHeight: 'auto',
           top: '7rem',
           left: '17rem',
@@ -219,7 +311,157 @@ export default function Mapping() {
             </Grid>
           </Box>
         </Fab > : <Box />}
+        {showlayer ?
+          <Fab sx={{
+            position: 'fixed',
+            width: '25rem',
+            height: '25rem',
+            minHeight: 'auto',
+            bottom: '13rem',
+            right: '8rem',
+            borderRadius: '10px',
+            boxShadow: 0,
+            backgroundColor: 'white',
+          }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'start', p: 4 }}>
+              <Typography sx={{
+                position: 'flex',
+                fontFamily: 'noto sans Thai',
+                fontSize: '22px',
+                color: 'black',
+                fontWeight: 600,
+                marginBottom: '16px'
+              }}>
+                ชั้นข้อมูล
+              </Typography>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={flood} onChange={handleChange} name="flood"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }} />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลน้ำท่วม</Typography>}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={repeatflood} onChange={handleChange} name="repeatflood"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }} />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลน้ำท่วมซ้ำซาก</Typography>}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={devicecenter} onChange={handleChange} name="devicecenter"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }} />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลศูนย์เก็บเครื่องจักรเครื่องมือ</Typography>}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={waterbuilding} onChange={handleChange} name="waterbuilding"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }} />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลอาคารชลศาสตร์</Typography>}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={mainriver} onChange={handleChange} name="mainriver"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }} />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลแม่น้ำสายหลัก</Typography>}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={minorriver} onChange={handleChange} name="minorriver"
+                      sx={{
+                        color: orange[600],
+                        '&.Mui-checked': {
+                          color: orange[600],
+                        },
+                      }}
+                    />
+                  }
+                  label={<Typography sx={{ fontFamily: 'noto sans Thai', fontSize: '18px' }}>ชั้นข้อมูลแม่น้ำสายรอง</Typography>}
+                />
+              </FormGroup>
+            </Box>
+          </Fab > : <Box />
+        }
+
+        <Fab sx={{
+          position: 'fixed',
+          width: '25rem',
+          height: '25rem',
+          minHeight: 'auto',
+          top: '16rem',
+          left: 'calc(100vw/2.4)',
+          borderRadius: '10px',
+          boxShadow: 0,
+          backgroundColor: 'white',
+        }}
+        >
+          <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', height: '100%', justifyContent: 'start', p: 4 }}>
+            <Typography sx={{
+              position: 'flex',
+              fontFamily: 'noto sans Thai',
+              fontSize: '22px',
+              color: 'black',
+              fontWeight: 600,
+              marginBottom: '16px'
+            }}>
+              ไปยังตำแหน่ง
+            </Typography>
+            <Box>
+              <Tabs
+                value={value}
+                onChange={handleChange2}
+                variant="fullWidth"
+                scrollButtons={false}
+                aria-label="scrollable prevent tabs example"
+              >
+                <Tab label="องศาทศนิยม" sx={{ fontFamily: 'noto sans Thai', color: 'orange', fontWeight: '600', fontSize: '18px' }} />
+                <Tab label="UTM" sx={{ fontFamily: 'noto sans Thai', color: 'orange', fontWeight: '600', fontSize: '16px' }} />
+              </Tabs>
+              {
+                (value === 0)
+                  ? <Box sx={{ bgcolor: 'red', width: '100%', height: '15rem', marginTop: '10px' }}>
+
+                  </Box>
+                  : <Box sx={{ bgcolor: 'blue', width: '100%', height: '15rem', marginTop: '10px' }}>
+
+                  </Box>
+              }
+            </Box>
+          </Box>
+        </Fab >
+
       </Box >
     </>
   )
+
 }
