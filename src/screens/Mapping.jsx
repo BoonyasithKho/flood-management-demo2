@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, FormGroup, Grid, Tab, Tabs, Typography } from "@mui/material"
+import { Box, Button, Checkbox, Divider, FormControlLabel, FormGroup, Grid, MenuItem, Tab, Tabs, TextField, Typography } from "@mui/material"
 import MiniDrawer from "../components/MiniDrawer"
 import Maps from "../components/Maps"
 import { Fab } from "@mui/material";
@@ -104,6 +104,17 @@ export default function Mapping() {
     backgroundColor: 'white',
     color: 'blue',
   };
+
+  const zoneUTM = [
+    {
+      value: '47N',
+      label: '47N',
+    },
+    {
+      value: '48N',
+      label: '48N',
+    }
+  ];
 
   const handleChange = (event) => {
     setState({
@@ -413,7 +424,7 @@ export default function Mapping() {
           </Fab > : <Box />
         }
 
-        <Fab sx={{
+        {showsearch ? <Fab sx={{
           position: 'fixed',
           width: '25rem',
           height: '25rem',
@@ -444,22 +455,68 @@ export default function Mapping() {
                 scrollButtons={false}
                 aria-label="scrollable prevent tabs example"
               >
-                <Tab label="องศาทศนิยม" sx={{ fontFamily: 'noto sans Thai', color: 'orange', fontWeight: '600', fontSize: '18px' }} />
-                <Tab label="UTM" sx={{ fontFamily: 'noto sans Thai', color: 'orange', fontWeight: '600', fontSize: '16px' }} />
+                <Tab label="องศาทศนิยม" sx={{ fontFamily: 'noto sans Thai', color: '#EF873D', fontWeight: '600', fontSize: '18px' }} />
+                <Tab label="UTM" sx={{ fontFamily: 'noto sans Thai', color: '#EF873D', fontWeight: '600', fontSize: '16px' }} />
               </Tabs>
               {
                 (value === 0)
-                  ? <Box sx={{ bgcolor: 'red', width: '100%', height: '15rem', marginTop: '10px' }}>
+                  ? <Box sx={{ width: '100%', height: '15rem', marginTop: '10px' }}>
 
+                    <TextField
+                      id="outlined-basic"
+                      label="ลองจิจูด"
+                      variant="outlined"
+                      sx={{ width: '100%', marginTop: '16px' }}
+                      inputProps={{ style: { fontFamily: 'noto sans Thai' } }}
+                      InputLabelProps={{ style: { fontFamily: 'noto sans Thai' } }} />
+                    <TextField
+                      id="outlined-basic"
+                      label="ละติจูด"
+                      variant="outlined"
+                      sx={{ width: '100%', marginTop: '16px' }}
+                      inputProps={{ style: { fontFamily: 'noto sans Thai' } }}
+                      InputLabelProps={{ style: { fontFamily: 'noto sans Thai' } }} />
+                    <Divider sx={{ marginTop: '24px', bgcolor: '#EF873D', height: '2px' }} />
+                    <Box display='flex' flexDirection='row' justifyContent="space-between" sx={{ marginTop: '16px' }}>
+                      <Button variant="outlined" sx={{ width: '45%', height: '3rem', fontFamily: 'noto sans Thai', fontSize: '18px', fontWeight: '600', color: '#EF873D' }}>ยกเลิก</Button>
+                      <Button variant="contained" sx={{ width: '45%', height: '3rem', fontFamily: 'noto sans Thai', fontSize: '18px', fontWeight: '600', color: 'white', bgcolor: '#EF873D' }}>ไปยังตำแหน่ง</Button>
+                    </Box>
                   </Box>
-                  : <Box sx={{ bgcolor: 'blue', width: '100%', height: '15rem', marginTop: '10px' }}>
-
+                  : <Box sx={{ width: '100%', height: '15rem', marginTop: '10px' }}>
+                    <Box display='flex' flexDirection='row' justifyContent='space-between'>
+                      <TextField
+                        id="outlined-basic"
+                        select
+                        label="ระบุโซน"
+                        variant="outlined"
+                        sx={{ width: '30%', marginTop: '16px' }}
+                        inputProps={{ style: { fontFamily: 'noto sans Thai' } }}
+                        InputLabelProps={{ style: { fontFamily: 'noto sans Thai' } }} >
+                        {zoneUTM.map((zone) => (
+                          <MenuItem key={zone.value} value={zone.value} sx={{ fontFamily: 'noto sans Thai' }}>
+                            {zone.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                      <TextField
+                        id="outlined-basic"
+                        label="ค่าพิกัด"
+                        variant="outlined"
+                        sx={{ width: '65%', marginTop: '16px' }}
+                        inputProps={{ style: { fontFamily: 'noto sans Thai' } }}
+                        InputLabelProps={{ style: { fontFamily: 'noto sans Thai' } }} />
+                    </Box>
+                    <Typography sx={{ width: '100%', textAlign: 'left', marginTop: '24px', fontFamily: 'noto sans Thai', fontWeight: '600' }}>ตัวอย่าง 47N 40050 49513</Typography>
+                    <Divider sx={{ marginTop: '48px', bgcolor: '#EF873D', height: '2px' }} />
+                    <Box display='flex' flexDirection='row' justifyContent="space-between" sx={{ marginTop: '16px' }}>
+                      <Button variant="outlined" sx={{ width: '45%', height: '3rem', fontFamily: 'noto sans Thai', fontSize: '18px', fontWeight: '600', color: '#EF873D' }}>ยกเลิก</Button>
+                      <Button variant="contained" sx={{ width: '45%', height: '3rem', fontFamily: 'noto sans Thai', fontSize: '18px', fontWeight: '600', color: 'white', bgcolor: '#EF873D' }}>ไปยังตำแหน่ง</Button>
+                    </Box>
                   </Box>
               }
             </Box>
           </Box>
-        </Fab >
-
+        </Fab > : <Box />}
       </Box >
     </>
   )
