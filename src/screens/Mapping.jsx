@@ -11,7 +11,6 @@ import LayersIcon from '@mui/icons-material/Layers';
 import PrintIcon from '@mui/icons-material/Print';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SearchIcon from '@mui/icons-material/Search';
-// import TabContext from "@mui/lab/TabContext";
 
 import sphereBase from '../assets/sphereBase.png';
 import sphereSat from '../assets/sphereSat.png';
@@ -20,8 +19,6 @@ import '../App.css'
 import PieColor from "../components/PieChart";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
-// import { TabList, TabPanel } from "@mui/lab";
-
 
 export default function Mapping() {
   const [showpie, setShowpie] = useState(false)

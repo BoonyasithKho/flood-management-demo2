@@ -1,8 +1,25 @@
-import { Box, Button, Divider, Grid, MenuItem, TextField, styled } from "@mui/material";
+import { Alert, Box, Button, Divider, Grid, MenuItem, Snackbar, TextField, styled } from "@mui/material";
 import MiniDrawer from "../components/MiniDrawer";
 import { orange } from "@mui/material/colors";
+import { useState } from "react";
 
 export default function Profile() {
+
+    const [state, setState] = useState({
+        open: false,
+        vertical: 'top',
+        horizontal: 'center',
+    });
+
+    const { vertical, horizontal, open } = state;
+
+    const handleClick = (newState) => () => {
+        setState({ ...newState, open: true });
+    };
+
+    const handleClose = () => {
+        setState({ ...state, open: false });
+    };
 
     const agency = [
         {
@@ -124,10 +141,36 @@ export default function Profile() {
                         </Grid>
                     </Grid>
                     <center>
-                        <ColorButton variant="contained"> ยืนยันการแก้ไข</ColorButton>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <ColorButton onClick={handleClick({ vertical: 'top', horizontal: 'center' })}>
+                                ยืนยันการแก้ไข
+                            </ColorButton>
+                        </Box>
                     </center>
                 </Box>
             </Box >
+            <Snackbar
+                anchorOrigin={{ vertical, horizontal }}
+                autoHideDuration={1000}
+                open={open}
+                onClose={handleClose}
+                key={vertical + horizontal}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    variant="filled"
+                    sx={{
+                        display: 'flex',
+                        width: '100%', height: '100px', bgcolor: 'white', color: 'black', borderRadius: '20px', textAlign: 'center', boxShadow: 2,
+                        paddingTop: '30px',
+                        fontFamily: 'noto sans Thai',
+                        fontSize: '16px',
+                    }}
+                >
+                    การแก้ไขได้ถูกบันทึกเรียบร้อยแล้ว
+                </Alert>
+            </Snackbar >
         </>
     )
 }
