@@ -12,6 +12,7 @@ import deviceIcon_2 from '../assets/deviceIcon_2.png'
 import deviceIcon_3 from '../assets/deviceIcon_3.png'
 import deviceIcon_4 from '../assets/deviceIcon_4.png'
 import deviceIcon_5 from '../assets/deviceIcon_5.png'
+import { Box } from '@mui/material';
 
 function createData(iconDevice, name, deviceType, status, date) {
     return { iconDevice, name, deviceType, status, date };
@@ -28,44 +29,50 @@ const rows = [
 
 
 export default function DeviceTable() {
+    // const [getdetail, setGetdetail] = React.useState(false)
+
     return (
-        <TableContainer component={Paper} sx={{ marginTop: '1.2em' }}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">รายการ</TableCell>
-                        <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">ประเภท</TableCell>
-                        <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">สถานะ</TableCell>
-                        <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange', paddingRight: '30px' }} align="right">วันที่</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            onClick={() => alert(row.name)}
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" sx={{ width: '6rem', paddingLeft: '30px' }}>
-                                <img src={row.iconDevice} alt="" width='32px' />
-                            </TableCell>
-                            <TableCell component="th" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="left" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
-                                {row.deviceType}
-                            </TableCell>
-                            <TableCell align="left" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
-                                {row.status}
-                            </TableCell>
-                            <TableCell align="right" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem', paddingRight: '30px' }}>
-                                {row.date}
-                            </TableCell>
+        <>
+            <TableContainer component={Paper} sx={{ marginTop: '1.2em' }
+            } >
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">รายการ</TableCell>
+                            <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">ประเภท</TableCell>
+                            <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange' }} align="left">สถานะ</TableCell>
+                            <TableCell sx={{ fontFamily: 'noto sans thai', fontSize: '1.2rem', color: 'orange', paddingRight: '30px' }} align="right">วันที่</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer >
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <TableRow
+                                onClick={() => alert(row.name)}
+                                // onClick={() => setGetdetail(true)}
+                                key={row.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" sx={{ width: '6rem', paddingLeft: '30px' }}>
+                                    <img src={row.iconDevice} alt="" width='32px' />
+                                </TableCell>
+                                <TableCell component="th" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="left" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
+                                    {row.deviceType}
+                                </TableCell>
+                                <TableCell align="left" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem' }}>
+                                    {row.status}
+                                </TableCell>
+                                <TableCell align="right" sx={{ fontFamily: 'noto sans Thai', fontSize: '1rem', paddingRight: '30px' }}>
+                                    {row.date}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer >
+        </>
     );
 }

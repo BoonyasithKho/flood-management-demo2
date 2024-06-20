@@ -10,7 +10,7 @@ import Mapping from '../screens/Mapping';
 import Dashboard from '../screens/Dashboard';
 import Download from '../screens/Download';
 import Profile from '../screens/Profile';
-import DeviceRegisted from '../screens/DeviceRegisted'
+import DeviceRegisted from '../screens/DeviceRegister/DeviceRegisted'
 import Contactus from '../screens/Contactus'
 import ErrorScreen from '../screens/ErrorScreen';
 

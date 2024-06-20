@@ -19,6 +19,7 @@ import '../App.css'
 import PieColor from "../components/PieChart";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
+import L from 'leaflet'
 
 export default function Mapping() {
   const [showpie, setShowpie] = useState(false)
@@ -26,6 +27,8 @@ export default function Mapping() {
   const [showsearch, setShowsearch] = useState(false)
   const [mapselect, setMapselect] = useState(false)
   const [value, setValue] = useState(0);
+
+  var latlng = L.latLng(13, 100);
 
   const [state, setState] = useState({
     flood: false,
@@ -113,6 +116,8 @@ export default function Mapping() {
     }
   ];
 
+
+
   const handleChange = (event) => {
     setState({
       ...state,
@@ -124,18 +129,29 @@ export default function Mapping() {
     setValue(newValue);
   };
 
+  const zoomIn = () => {
+    window.map.zoomIn();
+  }
+
+  const zoomOut = () => {
+    window.map.zoomOut();
+  }
+  const locateMe = () => {
+    window.map.setView(latlng, 6);
+  }
+
   return (
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
         < MiniDrawer />
         <Maps />
-        <Fab aria-label="zoomOut" sx={fabStyle_1} size='medium' >
+        <Fab aria-label="zoomOut" sx={fabStyle_1} size='medium' onClick={() => zoomOut()}>
           <RemoveIcon />
         </Fab>
-        <Fab aria-label="zoomIn" sx={fabStyle_2} size='medium'>
+        <Fab aria-label="zoomIn" sx={fabStyle_2} size='medium' onClick={() => zoomIn()}>
           <AddIcon />
         </Fab>
-        <Fab aria-label="locateMe" sx={fabStyle_3} size='medium'>
+        <Fab aria-label="locateMe" sx={fabStyle_3} size='medium' onClick={() => locateMe()} >
           <MyLocationIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_4} size='medium'>
