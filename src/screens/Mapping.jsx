@@ -20,11 +20,13 @@ import PieColor from "../components/PieChart";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
 import L from 'leaflet'
+import MapDraw from "../components/MapDraw";
 
 export default function Mapping() {
   const [showpie, setShowpie] = useState(false)
   const [showlayer, setShowlayer] = useState(false)
   const [showsearch, setShowsearch] = useState(false)
+  const [showdraw, setShowdraw] = useState(false)
   const [mapselect, setMapselect] = useState(false)
   const [value, setValue] = useState(0);
 
@@ -144,7 +146,8 @@ export default function Mapping() {
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
         < MiniDrawer />
-        <Maps />
+        {/* <Maps /> */}
+        <MapDraw />
         <Fab aria-label="zoomOut" sx={fabStyle_1} size='medium' onClick={() => zoomOut()}>
           <RemoveIcon />
         </Fab>
@@ -154,7 +157,7 @@ export default function Mapping() {
         <Fab aria-label="locateMe" sx={fabStyle_3} size='medium' onClick={() => locateMe()} >
           <MyLocationIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_4} size='medium'>
+        <Fab aria-label="add" sx={fabStyle_4} size='medium' onClick={() => setShowdraw(!showdraw)}>
           <DrawIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_5} size='medium'>
@@ -531,6 +534,7 @@ export default function Mapping() {
           </Box>
         </Fab > : <Box />}
       </Box >
+      {showdraw ? <MapDraw /> : <Box />}
     </>
   )
 

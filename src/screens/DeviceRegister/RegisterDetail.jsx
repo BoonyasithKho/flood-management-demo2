@@ -1,5 +1,4 @@
 import { Box, Button, Divider } from '@mui/material'
-import React from 'react'
 import MiniDrawer from '../../components/MiniDrawer'
 import qrCode from '/Users/boonyasith/Documents/Learning/React/Project/flood-management-demo2/src/assets/qrCode.png';
 

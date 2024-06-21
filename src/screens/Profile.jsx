@@ -23,6 +23,10 @@ export default function Profile() {
 
     const agency = [
         {
+            value: 'กรุณาเลือกหน่วยงาน',
+            label: 'กรุณาเลือกหน่วยงาน',
+        },
+        {
             value: 'หน่วยงานที่ 1',
             label: 'หน่วยงานที่ 1',
         },

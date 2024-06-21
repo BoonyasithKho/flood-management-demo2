@@ -1,17 +1,27 @@
 import { useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, WMSTileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, WMSTileLayer } from "react-leaflet";
+import locationMark from '../assets/location.png'
+import { Icon } from "leaflet";
 
 function Maps() {
     const [map, setMap] = useState(null);
     window.map = map;
+    const [center, setCenter] = useState({ lat: 13.000, lng: 100.000 });
+    const ZOOM_LEVEL = 6;
+
+    const markerIcon = new Icon({
+        iconUrl: locationMark,
+        iconSize: [35, 45],
+    })
+
     return (
 
         <MapContainer
             style={{ width: "100%", height: "calc(100vh - 75px)" }
             }
-            zoom={6}
-            center={[13, 100]}
+            zoom={ZOOM_LEVEL}
+            center={center}
             scrollWheelZoom={false}
             fadeAnimation={true}
             markerZoomAnimation={true}
@@ -30,6 +40,11 @@ function Maps() {
                     transparent: true,
                 }}
             />
+            <Marker position={center} icon={markerIcon}>
+                <Popup>
+                    A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+            </Marker>
         </MapContainer >
     );
 }
