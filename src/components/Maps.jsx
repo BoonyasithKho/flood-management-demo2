@@ -13,6 +13,7 @@ function Maps() {
     const markerIcon = new Icon({
         iconUrl: locationMark,
         iconSize: [35, 45],
+        iconAnchor: [19, 38],
     })
 
     return (

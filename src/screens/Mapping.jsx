@@ -22,6 +22,11 @@ import { orange } from "@mui/material/colors";
 import L from 'leaflet'
 import MapDraw from "../components/MapDraw";
 
+// import { distance } from "@turf/distance"
+// import * as turf from "@turf/turf";
+import { useMapEvents } from "react-leaflet";
+import MapDistance from "../components/MapDistance";
+
 export default function Mapping() {
   const [showpie, setShowpie] = useState(false)
   const [showlayer, setShowlayer] = useState(false)
@@ -146,8 +151,8 @@ export default function Mapping() {
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
         < MiniDrawer />
-        {/* <Maps /> */}
-        <MapDraw />
+        {/* {showdraw ? <MapDraw /> : <Maps />} */}
+        <MapDistance />
         <Fab aria-label="zoomOut" sx={fabStyle_1} size='medium' onClick={() => zoomOut()}>
           <RemoveIcon />
         </Fab>
@@ -160,7 +165,19 @@ export default function Mapping() {
         <Fab aria-label="add" sx={fabStyle_4} size='medium' onClick={() => setShowdraw(!showdraw)}>
           <DrawIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_5} size='medium'>
+        {/* <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() => {
+          console.log('Hello')
+          // L.control.scale().addTo(window.map)
+          var from = turf.point([-75.343, 39.984]);
+          var to = turf.point([-75.534, 39.123]);
+          var options = { units: "miles" };
+
+          var distance = turf.distance(from, to, options);
+          console.log(distance);
+        }}> */}
+        <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() =>
+          console.log('Measure Distance')
+        }>
           <StraightenIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_6} size='medium' onClick={() => setShowlayer(!showlayer)}>
@@ -534,7 +551,8 @@ export default function Mapping() {
           </Box>
         </Fab > : <Box />}
       </Box >
-      {showdraw ? <MapDraw /> : <Box />}
+      {showdraw ? <MapDraw /> : <Box />
+      }
     </>
   )
 

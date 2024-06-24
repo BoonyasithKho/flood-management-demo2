@@ -6,22 +6,23 @@ import { Icon, icon, polyline } from "leaflet";
 import L from 'leaflet'
 import { Box } from "@mui/system";
 import SearchIcon from '@mui/icons-material/Search';
+import * as turf from "@turf/turf";
 
 
-const purpleOptions = { color: 'purple' }
+// const purpleOptions = { color: 'purple' }
 let polygons = []
 let points = []
 
 
 
-function MapDraw() {
+function MapDistance() {
     const [map, setMap] = useState(null);
     window.map = map;
     const [center, setCenter] = useState({ lat: 13.000, lng: 100.000 });
     let [poly, setPoly] = useState(polygons);
     // const [mulpoint, setMulpoint] = useState(points);
     // const [point, setPoint] = useState();
-    const [first, setFirst] = useState()
+    const [first, setFirst] = useState('')
 
     const ZOOM_LEVEL = 6;
 
@@ -39,31 +40,22 @@ function MapDraw() {
     });
 
     const MapMarker = () => {
+        var startPoint;
+        var endPoint;
+
         const map = useMapEvents({
+
             click(e) {
                 L.marker(e.latlng, { icon: markerIcon }).addTo(map)
-
-                if (first == null) {
+                // console.log(first)
+                if (first == '') {
                     setFirst([e.latlng.lat, e.latlng.lng])
-                    polygons = [
-                        [e.latlng.lat, e.latlng.lng],
-                    ];
-                    points = [
-                        { lat: e.latlng.lat, lng: e.latlng.lng },
-                    ];
                 }
                 else {
-                    polygons.push([e.latlng.lat, e.latlng.lng])
-                    points.push({ lat: e.latlng.lat, lng: e.latlng.lng })
-
+                    var distance = turf.distance(first, [e.latlng.lat, e.latlng.lng]);
+                    console.log(distance);
                 }
-                setPoly(polygons)
-                L.polyline(polygons, { color: 'red' }).addTo(map)
             },
-            dblclick(e) {
-                console.log("All Polygons : " + polygons + e)
-                L.polygon(polygons, { color: 'red' }).addTo(map);
-            }
         })
     }
 
@@ -108,4 +100,4 @@ function MapDraw() {
     );
 }
 
-export default MapDraw;
+export default MapDistance;
