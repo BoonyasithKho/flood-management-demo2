@@ -32,6 +32,7 @@ export default function Mapping() {
   const [showlayer, setShowlayer] = useState(false)
   const [showsearch, setShowsearch] = useState(false)
   const [showdraw, setShowdraw] = useState(false)
+  const [showdistance, setShowdistance] = useState(false)
   const [mapselect, setMapselect] = useState(false)
   const [value, setValue] = useState(0);
 
@@ -151,8 +152,8 @@ export default function Mapping() {
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
         < MiniDrawer />
-        {/* {showdraw ? <MapDraw /> : <Maps />} */}
-        <MapDistance />
+        {(showdraw || showdistance) ? (showdraw ? <MapDraw /> : <MapDistance />) : <Maps />}
+
         <Fab aria-label="zoomOut" sx={fabStyle_1} size='medium' onClick={() => zoomOut()}>
           <RemoveIcon />
         </Fab>
@@ -162,22 +163,16 @@ export default function Mapping() {
         <Fab aria-label="locateMe" sx={fabStyle_3} size='medium' onClick={() => locateMe()} >
           <MyLocationIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_4} size='medium' onClick={() => setShowdraw(!showdraw)}>
+        <Fab aria-label="add" sx={fabStyle_4} size='medium' onClick={() => {
+          setShowdraw(!showdraw)
+          setShowdistance(false)
+        }}>
           <DrawIcon />
         </Fab>
-        {/* <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() => {
-          console.log('Hello')
-          // L.control.scale().addTo(window.map)
-          var from = turf.point([-75.343, 39.984]);
-          var to = turf.point([-75.534, 39.123]);
-          var options = { units: "miles" };
-
-          var distance = turf.distance(from, to, options);
-          console.log(distance);
-        }}> */}
-        <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() =>
-          console.log('Measure Distance')
-        }>
+        <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() => {
+          setShowdistance(!showdistance)
+          setShowdraw(false)
+        }} >
           <StraightenIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_6} size='medium' onClick={() => setShowlayer(!showlayer)}>

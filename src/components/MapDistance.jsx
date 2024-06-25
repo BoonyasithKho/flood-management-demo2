@@ -11,9 +11,6 @@ import * as turf from "@turf/turf";
 
 // const purpleOptions = { color: 'purple' }
 let polygons = []
-let points = []
-
-
 
 function MapDistance() {
     const [map, setMap] = useState(null);
@@ -40,21 +37,26 @@ function MapDistance() {
     });
 
     const MapMarker = () => {
-        var startPoint;
-        var endPoint;
 
         const map = useMapEvents({
 
             click(e) {
                 L.marker(e.latlng, { icon: markerIcon }).addTo(map)
-                // console.log(first)
                 if (first == '') {
                     setFirst([e.latlng.lat, e.latlng.lng])
+                    polygons = [
+                        [e.latlng.lat, e.latlng.lng],
+                    ];
                 }
                 else {
                     var distance = turf.distance(first, [e.latlng.lat, e.latlng.lng]);
                     console.log(distance);
+                    polygons.push([e.latlng.lat, e.latlng.lng])
+                    // show distance
+                    alert(distance);
                 }
+                setPoly(polygons)
+                L.polyline(polygons, { color: 'red' }).addTo(map)
             },
         })
     }
