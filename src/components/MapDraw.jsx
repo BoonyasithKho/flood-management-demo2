@@ -2,25 +2,17 @@ import { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, WMSTileLayer, useMapEvents, Polygon } from "react-leaflet";
 import locationMark from '../assets/location.png'
-import { Icon, icon, polyline } from "leaflet";
+import { Icon } from "leaflet";
 import L from 'leaflet'
-import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
 
-
-const purpleOptions = { color: 'purple' }
 let polygons = []
 let points = []
-
-
 
 function MapDraw() {
     const [map, setMap] = useState(null);
     window.map = map;
-    const [center, setCenter] = useState({ lat: 13.000, lng: 100.000 });
+    const [center] = useState({ lat: 13.000, lng: 100.000 });
     let [poly, setPoly] = useState(polygons);
-    // const [mulpoint, setMulpoint] = useState(points);
-    // const [point, setPoint] = useState();
     const [first, setFirst] = useState()
 
     const ZOOM_LEVEL = 6;
@@ -81,8 +73,6 @@ function MapDraw() {
 
             whenReady={() => {
                 console.log("This function will fire once the map is created")
-                // console.log(window.map)
-
             }}
 
         >

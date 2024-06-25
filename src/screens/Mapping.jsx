@@ -22,9 +22,6 @@ import { orange } from "@mui/material/colors";
 import L from 'leaflet'
 import MapDraw from "../components/MapDraw";
 
-// import { distance } from "@turf/distance"
-// import * as turf from "@turf/turf";
-import { useMapEvents } from "react-leaflet";
 import MapDistance from "../components/MapDistance";
 
 export default function Mapping() {
@@ -35,6 +32,9 @@ export default function Mapping() {
   const [showdistance, setShowdistance] = useState(false)
   const [mapselect, setMapselect] = useState(false)
   const [value, setValue] = useState(0);
+  const [showdefault, setShowdefault] = useState(true)
+  const [showroad, setShowroad] = useState(false)
+  const [showimagery, setShowimagery] = useState(false)
 
   var latlng = L.latLng(13, 100);
 
@@ -124,8 +124,6 @@ export default function Mapping() {
     }
   ];
 
-
-
   const handleChange = (event) => {
     setState({
       ...state,
@@ -163,13 +161,13 @@ export default function Mapping() {
         <Fab aria-label="locateMe" sx={fabStyle_3} size='medium' onClick={() => locateMe()} >
           <MyLocationIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_4} size='medium' onClick={() => {
+        <Fab aria-label="draw" sx={fabStyle_4} size='medium' onClick={() => {
           setShowdraw(!showdraw)
           setShowdistance(false)
         }}>
           <DrawIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_5} size='medium' onClick={() => {
+        <Fab aria-label="distance" sx={fabStyle_5} size='medium' onClick={() => {
           setShowdistance(!showdistance)
           setShowdraw(false)
         }} >
@@ -213,7 +211,9 @@ export default function Mapping() {
               borderBottomLeftRadius: '8px',
               borderBottomRightRadius: '8px'
             }}>
-              แผนที่ค่าเริ่มต้น
+              {
+                showdefault ? 'แผนที่ค่าเริ่มต้น' : showroad ? 'ถนน' : showimagery ? 'ดาวเทียม' : 'แผนที่ค่าเริ่มต้น'
+              }
             </div>
           </Box>
         </Fab >
@@ -228,8 +228,16 @@ export default function Mapping() {
             borderRadius: '10px',
             outline: '3px solid orange',
             boxShadow: 0,
-          }}>
-            <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
+          }}
+            onClick={() => {
+              setShowroad(true)
+              showroad ? setShowroad(false) : setShowdefault(false)
+              setShowimagery(false)
+              setMapselect(false)
+            }}
+          >
+            <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}
+            >
               <img style={{ width: '100%', borderRadius: '10px' }} src={sphereBase} height='80px' />
               <div style={{
                 width: '100%',
@@ -242,39 +250,51 @@ export default function Mapping() {
                 borderBottomLeftRadius: '8px',
                 borderBottomRightRadius: '8px'
               }}>
-                ถนน
+                {showroad ?
+                  'แผนที่ค่าเริ่มต้น'
+                  : 'ถนน'}
               </div>
             </Box>
           </Fab >
           : <Box />}
-        {mapselect ? <Fab sx={{
-          position: 'fixed',
-          width: '100px',
-          height: '80px',
-          minHeight: 'auto',
-          bottom: '3rem',
-          left: '31rem',
-          borderRadius: '10px',
-          outline: '3px solid orange',
-          boxShadow: 0,
-        }}>
-          <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
-            <img style={{ width: '100%', borderRadius: '10px' }} src={sphereSat} height='80px' />
-            <div style={{
-              width: '100%',
-              position: 'absolute',
-              bottom: 0,
-              fontFamily: 'noto sans Thai',
-              color: 'white',
-              fontWeight: 600,
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              borderBottomLeftRadius: '8px',
-              borderBottomRightRadius: '8px'
-            }}>
-              ดาวเทียม
-            </div>
-          </Box>
-        </Fab> : <Box />
+        {mapselect ?
+          <Fab sx={{
+            position: 'fixed',
+            width: '100px',
+            height: '80px',
+            minHeight: 'auto',
+            bottom: '3rem',
+            left: '31rem',
+            borderRadius: '10px',
+            outline: '3px solid orange',
+            boxShadow: 0,
+          }}
+            onClick={() => {
+              setShowimagery(true)
+              showimagery ? setShowimagery(false) : setShowdefault(false)
+              setShowroad(false)
+              setMapselect(false)
+            }}
+          >
+            <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
+              <img style={{ width: '100%', borderRadius: '10px' }} src={sphereSat} height='80px' />
+              <div style={{
+                width: '100%',
+                position: 'absolute',
+                bottom: 0,
+                fontFamily: 'noto sans Thai',
+                color: 'white',
+                fontWeight: 600,
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                borderBottomLeftRadius: '8px',
+                borderBottomRightRadius: '8px'
+              }}>
+                {showimagery ?
+                  'แผนที่ค่าเริ่มต้น'
+                  : 'ดาวเทียม'}
+              </div>
+            </Box>
+          </Fab> : <Box />
         }
         {showpie ? <Fab sx={{
           position: 'fixed',

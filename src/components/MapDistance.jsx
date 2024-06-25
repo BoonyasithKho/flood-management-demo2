@@ -2,14 +2,10 @@ import { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer, WMSTileLayer, useMapEvents, Polygon } from "react-leaflet";
 import locationMark from '../assets/location.png'
-import { Icon, icon, polyline } from "leaflet";
+import { Icon } from "leaflet";
 import L from 'leaflet'
-import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
 import * as turf from "@turf/turf";
 
-
-// const purpleOptions = { color: 'purple' }
 let polygons = []
 
 function MapDistance() {
