@@ -19,7 +19,7 @@ import '../App.css'
 import PieColor from "../components/PieChart";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
-import L from 'leaflet'
+import L, { TileLayer } from 'leaflet'
 import MapDraw from "../components/MapDraw";
 
 import MapDistance from "../components/MapDistance";
@@ -146,6 +146,16 @@ export default function Mapping() {
     window.map.setView(latlng, 6);
   }
 
+  var layerImagery = L.tileLayer(
+    'https://basemap.sphere.gistda.or.th/tiles/sphere_hybrid/EPSG3857/{z}/{x}/{y}.jpeg?key=0BAF97C307C24B28A7E19CE1D9B1DE88',
+    { foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }
+  );
+  var layerRoad = L.tileLayer(
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}',
+    { foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }
+  );
+
+
   return (
     <>
       <Box sx={{ display: 'flex', marginTop: '75px', width: '100%' }}>
@@ -173,7 +183,7 @@ export default function Mapping() {
         }} >
           <StraightenIcon />
         </Fab>
-        <Fab aria-label="add" sx={fabStyle_6} size='medium' onClick={() => setShowlayer(!showlayer)}>
+        <Fab aria-label="layerlist" sx={fabStyle_6} size='medium' onClick={() => setShowlayer(!showlayer)}>
           <LayersIcon />
         </Fab>
         <Fab aria-label="add" sx={fabStyle_7} size='medium'>
@@ -234,6 +244,7 @@ export default function Mapping() {
               showroad ? setShowroad(false) : setShowdefault(false)
               setShowimagery(false)
               setMapselect(false)
+              layerRoad.addTo(window.map);
             }}
           >
             <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}
@@ -274,6 +285,7 @@ export default function Mapping() {
               showimagery ? setShowimagery(false) : setShowdefault(false)
               setShowroad(false)
               setMapselect(false)
+              layerImagery.addTo(window.map);
             }}
           >
             <Box sx={{ display: 'flex', width: '100px', position: 'relative' }}>
@@ -397,6 +409,9 @@ export default function Mapping() {
                 <FormControlLabel
                   control={
                     <Checkbox checked={flood} onChange={handleChange} name="flood"
+                      onClick={() =>
+                        layerImagery.addTo(window.map)
+                      }
                       sx={{
                         color: orange[600],
                         '&.Mui-checked': {
@@ -566,8 +581,7 @@ export default function Mapping() {
           </Box>
         </Fab > : <Box />}
       </Box >
-      {showdraw ? <MapDraw /> : <Box />
-      }
+      {/* {showdraw ? <MapDraw /> : <Box /> */}
     </>
   )
 

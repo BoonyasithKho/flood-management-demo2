@@ -33,14 +33,14 @@ function Maps() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <WMSTileLayer
+            {/* <WMSTileLayer
                 url="https://service-proxy-765rkyfg3q-as.a.run.app/api_geoserver/geoserver/dri/wms"
                 params={{
                     format: "image/png",
                     layers: "dri:province_with_c_dri",
                     transparent: true,
                 }}
-            />
+            /> */}
             <Marker position={center} icon={markerIcon}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.

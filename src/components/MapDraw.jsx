@@ -11,7 +11,7 @@ let points = []
 function MapDraw() {
     const [map, setMap] = useState(null);
     window.map = map;
-    const [center] = useState({ lat: 13.000, lng: 100.000 });
+    const [center, setCenter] = useState({ lat: 13.000, lng: 100.000 });
     let [poly, setPoly] = useState(polygons);
     const [first, setFirst] = useState()
 
@@ -74,7 +74,6 @@ function MapDraw() {
             whenReady={() => {
                 console.log("This function will fire once the map is created")
             }}
-
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
